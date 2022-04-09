@@ -29,11 +29,6 @@ class MegaList
 
 public:
 
-    MegaList(MegaNode *node)
-    {
-        current = front = back = node;
-    }
-
     ~MegaList()
     {
         MegaNode *cur = back, *prev;
