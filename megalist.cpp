@@ -28,6 +28,12 @@ class MegaList
     int size = 0;
 
 public:
+
+    MegaList(MegaNode *node)
+    {
+        current = front = back = node;
+    }
+
     MegaNode *GetCurrent()
     {
         return current;
