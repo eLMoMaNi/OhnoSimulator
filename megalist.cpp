@@ -110,8 +110,8 @@ public:
 
         if (cur == NULL)
         {
-            cur->prev = front;
-            front->next = cur;
+            node->prev = front;
+            front->next = node;
 
             front = front->next;
         }
