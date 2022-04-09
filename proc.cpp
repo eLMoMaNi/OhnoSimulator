@@ -33,3 +33,4 @@ struct Proc
         return GetTimearound() - processing_time;
     }
 };
+const Proc IDLE_PROC=Proc("IDLE",-1,-1);
