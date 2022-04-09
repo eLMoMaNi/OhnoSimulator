@@ -1,6 +1,6 @@
 #include <scheduler.cpp>
 
-class PreemptiveScheduler : public Scheduler
+class SJFScheduler : public Scheduler
 {
     //idk
 };

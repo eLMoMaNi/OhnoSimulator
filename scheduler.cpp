@@ -27,12 +27,3 @@ public:
     virtual Proc Dispatch() = 0;
     void ExitProcess();
 };
-
-
-
-class SJFScheduler : public Scheduler
-{
-    // shortJob
-};
-
-// puzzle 8 problem
