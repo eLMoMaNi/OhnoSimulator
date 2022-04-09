@@ -3,7 +3,7 @@
 class SJFScheduler : public Scheduler
 {
     MegaNode *current;
-    Proc Dispatch(std::vector<Proc> newcomers, int time)
+    Proc Dispatch(std::vector<MegaNode> newcomers, int time)
     {
         for (int i = 0; i < newcomers.size(); i++)
         {

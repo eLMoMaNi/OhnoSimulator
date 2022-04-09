@@ -25,6 +25,6 @@ public:
 
     Scheduler(); // for interactive mode
 
-    virtual Proc Dispatch(std::vector<Proc> newcomers, int time) = 0;
+    virtual Proc Dispatch(std::vector<MegaNode> newcomers, int time) = 0;
     void ExitProcess();
 };
