@@ -38,7 +38,8 @@ public:
         return size;
     }
 
-    void Insert(MegaNode *node)      // insert to the left
+    // Insert a MegaNode to the left of the current MegaNode
+    void Insert(MegaNode *node)
     {
         if (current == NULL)
         {
