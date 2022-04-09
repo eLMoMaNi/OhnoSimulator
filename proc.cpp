@@ -16,6 +16,12 @@ struct Proc
         this->finish_time = -1;
     }
 
+    //override logical equality operator. proc name acts as PID
+    bool operator==(const Proc &other)
+    {
+        return other.proc_name==this->proc_name;
+    }
+
     int GetResponseTime()
     {
         // TODO exp
@@ -33,4 +39,4 @@ struct Proc
         return GetTimearound() - processing_time;
     }
 };
-const Proc IDLE_PROC=Proc("IDLE",-1,-1);
+const Proc IDLE_PROC = Proc("IDLE", -1, -1);
