@@ -55,6 +55,8 @@ public:
     // Insert a MegaNode to the left of the current MegaNode
     void Insert(MegaNode *node)
     {
+        ++size;
+
         if (current == NULL)
         {
             current = front = back = node;
@@ -75,13 +77,13 @@ public:
         {
             back = back->prev;
         }
-
-        ++size;
     }
 
     // Inserts a MegaNode into a sorted list based on the remaining time
     void InsertSorted(MegaNode *node)
     {
+        ++size;
+
         if (current == NULL)
         {
             current = front = back = node;
@@ -122,13 +124,13 @@ public:
         {
             back = back->prev;
         }
-
-        ++size;
     }
 
     // Removes the current MegaNode and assigns a new one based on the value of the argument, defaults to the next one
     void Remove(bool forward = true)
     {
+        --size;
+        
         if (current->next != NULL)
         {
             current->next->prev = current->prev;
@@ -159,7 +161,5 @@ public:
         }
 
         delete cur;
-
-        --size;
     }
 };
