@@ -15,9 +15,13 @@ class MegaList
     MegaNode *back = NULL;
     int size = 0;
 
-    public:
-    void Insert(Proc proc);
-    void InsertSorted(Proc proc);
-    void Remove();
+public:
+    MegaNode *GetCurrent()
+    {
+        return current;
+    }
     int Size();
+    void Insert(Proc proc);       // insert to the left
+    void InsertSorted(Proc proc); // sorted by remaining time
+    void Remove();                // remove current
 };
