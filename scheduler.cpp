@@ -40,27 +40,27 @@ public:
         while (true)
         {
             // get newcomers
-            std::vector<MegaNode> newcomers;
+            std::vector<MegaNode *> newcomers;
             while (procs[arrive_idx].arrive_time <= time)
             {
-                MegaNode proc_node(procs[arrive_idx], procs[arrive_idx].processing_time, arrive_idx);
+                MegaNode *proc_node = new MegaNode(procs[arrive_idx], procs[arrive_idx].processing_time, arrive_idx);
                 newcomers.push_back(proc_node);
                 ++arrive_idx;
             }
             Proc dispatched = Dispatch(newcomers, time);
-            
-            if (dispatched == IDLE_PROC && arrive_idx == procs.size()-1)
-            {   
-                std::cout<<"Finished all process!"<<std::endl;
+
+            if (dispatched == IDLE_PROC && arrive_idx == procs.size() - 1)
+            {
+                std::cout << "Finished all process!" << std::endl;
                 break;
             }
-            std::cout<<"At time:\t\t"<<time<<" process\t\t"<<dispatched.proc_name<<" is working\n";
+            std::cout << "At time:\t\t" << time << " process\t\t" << dispatched.proc_name << " is working\n";
             ++time;
         }
     }
 
     Scheduler(); // for interactive mode
 
-    virtual Proc Dispatch(std::vector<MegaNode> newcomers, int time) = 0;
+    virtual Proc Dispatch(std::vector<MegaNode *> newcomers, int time) = 0;
     void ExitProcess();
 };
