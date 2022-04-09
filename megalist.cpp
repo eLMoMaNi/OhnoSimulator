@@ -34,6 +34,19 @@ public:
         current = front = back = node;
     }
 
+    ~MegaList()
+    {
+        MegaNode *cur = back, *prev;
+
+        while (cur != NULL)
+        {
+            prev = cur;
+            cur = cur->next;
+
+            delete prev;
+        }
+    }
+
     MegaNode *GetCurrent()
     {
         return current;
@@ -135,6 +148,8 @@ public:
             back = current->next;
         }
 
+        MegaNode *cur = current;
+
         if (forward)
         {
             current = current->next;
@@ -143,5 +158,7 @@ public:
         {
             current = current->prev;
         }
+
+        delete cur;
     }
 };
