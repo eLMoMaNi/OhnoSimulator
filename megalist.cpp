@@ -160,6 +160,5 @@ public:
         {
             current = current->prev;
         }
-
     }
 };
