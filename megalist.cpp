@@ -160,7 +160,5 @@ public:
         {
             current = current->prev;
         }
-
-        delete cur;
     }
 };
