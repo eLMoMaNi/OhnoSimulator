@@ -7,4 +7,5 @@ int main()
     std::cout << "Welcome to Oh-no Simulator, ain't no OS\n";
     SJFScheduler sjf;
     sjf.ParallelLoad("in.txt");
+    sjf.PrintStatistics();
 }
