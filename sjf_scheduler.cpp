@@ -1,7 +1,7 @@
 #include "scheduler.cpp"
+#include <algorithm>
 
 class SJFScheduler : public Scheduler
-
 {
     MegaNode *current = NULL;
     Proc Dispatch(std::vector<MegaNode *> newcomers, int time)
@@ -40,6 +40,7 @@ class SJFScheduler : public Scheduler
         // update process
         procs[current->origin_index].finish_time = time;
         //
+        delete current;
         current = mega_list.GetCurrent();
         mega_list.Remove(false);
         procs[current->origin_index].start_time = time;
@@ -67,7 +68,7 @@ public:
             Proc proc(proc_name, processing_time, arrive_time);
             procs.push_back(proc);
         }
-        // todo sort procs by arrive time
+        sort(procs.begin(), procs.end(), [] (const auto& left, const auto& right) { return left.arrive_time < right.arrive_time });
         int arrive_idx = 0; // index to procs to flow by arrive time
         int time = 0;
         while (true)
