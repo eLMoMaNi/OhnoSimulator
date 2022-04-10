@@ -31,6 +31,7 @@ class SJFScheduler : public Scheduler
             return current->proc;
         }
 
+        procs[current->origin_index].finish_time = time;
         if (mega_list.Size() == 0)
         {
             delete current;
@@ -38,7 +39,6 @@ class SJFScheduler : public Scheduler
             return IDLE_PROC;
         }
         // update process
-        procs[current->origin_index].finish_time = time;
         //
         delete current;
         current = mega_list.GetCurrent();
