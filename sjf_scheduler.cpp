@@ -34,6 +34,7 @@ class SJFScheduler : public Scheduler
 
         if (mega_list.Size() == 0)
         {
+            delete current;
             current = NULL;
             return IDLE_PROC;
         }
