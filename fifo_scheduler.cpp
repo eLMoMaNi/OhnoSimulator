@@ -47,4 +47,15 @@ class FIFOScheduler : public Scheduler
         
         return current->proc;
     }
+
+    static bool CompByFinish(const Proc &l, const Proc &r)
+    {
+        return l.finish_time < r.finish_time;
+    }
+
+    static bool CompByArrive(const Proc &l, const Proc &r)
+    {
+        return l.arrive_time < r.arrive_time;
+    }
+
 };
