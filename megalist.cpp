@@ -28,7 +28,6 @@ class MegaList
     int size = 0;
 
 public:
-
     ~MegaList()
     {
         MegaNode *cur = back, *prev;
@@ -60,10 +59,10 @@ public:
         if (current == NULL)
         {
             current = front = back = node;
-            
+
             return;
         }
-        
+
         node->next = current;
         node->prev = current->prev;
         current->prev = node;
