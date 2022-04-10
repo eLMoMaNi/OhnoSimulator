@@ -91,7 +91,7 @@ public:
             }
             Proc dispatched = Dispatch(newcomers, time);
 
-            if (dispatched == IDLE_PROC && arrive_idx >= procs.size() - 1)
+            if (dispatched == IDLE_PROC && arrive_idx > procs.size() - 1)
             {
                 std::cout << "Finished all process!" << std::endl;
                 break;
