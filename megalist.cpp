@@ -78,7 +78,7 @@ public:
         }
     }
 
-    // Inserts a MegaNode into a sorted list based on the remaining time
+    // Inserts a MegaNode into a sorted MegaList based on the remaining time
     void InsertSorted(MegaNode *node)
     {
         ++size;
