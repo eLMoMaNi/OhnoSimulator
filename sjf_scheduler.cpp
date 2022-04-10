@@ -1,6 +1,5 @@
 #include "scheduler.cpp"
 #include <algorithm>
-
 class SJFScheduler : public Scheduler
 {
     MegaNode *current = NULL;
