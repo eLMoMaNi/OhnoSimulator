@@ -47,6 +47,10 @@ class SJFScheduler : public Scheduler
         --(current->remaining);
         return current->proc;
     }
+    static bool CompByArrive(const Proc &l, const Proc &r)
+    {
+        return l.arrive_time < r.arrive_time;
+    }
 
 public:
     void ParallelLoad(std::string filename)
@@ -68,7 +72,7 @@ public:
             Proc proc(proc_name, processing_time, arrive_time);
             procs.push_back(proc);
         }
-        sort(procs.begin(), procs.end(), [] (const auto& left, const auto& right) { return left.arrive_time < right.arrive_time });
+        std::sort(procs.begin(), procs.end(), CompByArrive);
         int arrive_idx = 0; // index to procs to flow by arrive time
         int time = 0;
         while (true)
