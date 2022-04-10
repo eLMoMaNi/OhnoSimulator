@@ -1,7 +1,6 @@
 #include "scheduler.cpp"
 
 class SJFScheduler : public Scheduler
-
 {
     MegaNode *current = NULL;
     Proc Dispatch(std::vector<MegaNode *> newcomers, int time)
@@ -34,12 +33,14 @@ class SJFScheduler : public Scheduler
 
         if (mega_list.Size() == 0)
         {
+            delete current;
             current = NULL;
             return IDLE_PROC;
         }
         // update process
         procs[current->origin_index].finish_time = time;
         //
+        delete current;
         current = mega_list.GetCurrent();
         mega_list.Remove(false);
         procs[current->origin_index].start_time = time;
