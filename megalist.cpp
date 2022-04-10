@@ -167,8 +167,6 @@ public:
             back = current->next;
         }
 
-        MegaNode *cur = current;
-
         if (forward)
         {
             current = current->next;
