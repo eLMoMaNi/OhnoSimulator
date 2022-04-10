@@ -32,7 +32,7 @@ class SJFScheduler : public Scheduler
             return current->proc;
         }
 
-        if (mega_list.Size() == 1)
+        if (mega_list.Size() == 0)
         {
             current = NULL;
             return IDLE_PROC;
