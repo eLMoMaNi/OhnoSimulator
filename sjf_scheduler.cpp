@@ -47,6 +47,10 @@ class SJFScheduler : public Scheduler
         --(current->remaining);
         return current->proc;
     }
+    static bool CompByFinish(const Proc &l, const Proc &r)
+    {
+        return l.finish_time < r.finish_time;
+    }
     static bool CompByArrive(const Proc &l, const Proc &r)
     {
         return l.arrive_time < r.arrive_time;
@@ -94,6 +98,23 @@ public:
             }
             std::cout << "At time:\t\t" << time << " process\t\t" << dispatched.proc_name << " is working\n";
             ++time;
+        }
+    }
+
+    void PrintStatistics()
+    {
+        std::vector<Proc> tmp_vec = procs;
+        std::sort(tmp_vec.begin(), tmp_vec.end(), CompByFinish);
+        std::cout << "Processes Order:\t";
+        for (int i = 0; i < tmp_vec.size(); i++)
+        {
+            Proc proc = tmp_vec[i];
+            std::cout << proc.proc_name;
+        }
+        for (int i = 0; i < procs.size(); i++)
+        {
+            Proc proc = procs[i];
+            std::cout << "\nProcess: " << proc.proc_name << "\t response:" << proc.GetResponseTime() << "\t TA:" << proc.GetTimearound() << "\t delay" << proc.GetDelay();
         }
     }
 };
