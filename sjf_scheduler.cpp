@@ -20,12 +20,14 @@ class SJFScheduler : public Scheduler
             else
             {
                 current = mega_list.GetCurrent();
+                mega_list.Remove(false);
                 procs[current->origin_index].start_time = time;
             }
         }
 
         if (current->remaining > 0)
         {
+
             --(current->remaining);
             return current->proc;
         }
@@ -38,8 +40,8 @@ class SJFScheduler : public Scheduler
         // update process
         procs[current->origin_index].finish_time = time;
         //
-        mega_list.Remove();
         current = mega_list.GetCurrent();
+        mega_list.Remove(false);
         procs[current->origin_index].start_time = time;
         --(current->remaining);
         return current->proc;
@@ -72,7 +74,7 @@ public:
         {
             // get newcomers
             std::vector<MegaNode *> newcomers;
-            while (procs[arrive_idx].arrive_time <= time)
+            while (procs[arrive_idx].arrive_time <= time && arrive_idx < procs.size())
             {
                 MegaNode *proc_node = new MegaNode(procs[arrive_idx], procs[arrive_idx].processing_time, arrive_idx);
                 newcomers.push_back(proc_node);
