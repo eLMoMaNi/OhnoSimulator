@@ -95,7 +95,7 @@ public:
 
         while (cur != NULL)
         {
-            if (node->remaining <= cur->remaining)
+            if (node->remaining >= cur->remaining)
             {
                 node->next = cur;
                 node->prev = cur->prev;
@@ -118,6 +118,7 @@ public:
             front->next = node;
 
             front = front->next;
+            current = front;
         }
 
         if (back->prev != NULL)
@@ -130,7 +131,7 @@ public:
     void Remove(bool forward = true)
     {
         --size;
-        
+
         if (current->next != NULL)
         {
             current->next->prev = current->prev;
