@@ -118,6 +118,7 @@ public:
             front->next = node;
 
             front = front->next;
+            current = front;
         }
 
         if (back->prev != NULL)
