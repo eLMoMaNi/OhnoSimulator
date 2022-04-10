@@ -93,10 +93,10 @@ public:
 
             if (dispatched == IDLE_PROC && arrive_idx >= procs.size() - 1)
             {
-                std::cout << "Finished all process!" << std::endl;
+                std::cout << "\nFinished all processes!\n" << std::endl;
                 break;
             }
-            std::cout << "At time:\t\t" << time << " process\t\t" << dispatched.proc_name << " is working\n";
+            std::cout << "At time: " << time << "\t process " << dispatched.proc_name << " is working\n";
             ++time;
         }
     }
@@ -105,7 +105,7 @@ public:
     {
         std::vector<Proc> tmp_vec = procs;
         std::sort(tmp_vec.begin(), tmp_vec.end(), CompByFinish);
-        std::cout << "Processes Order:\t";
+        std::cout << "Processes Order: ";
         for (int i = 0; i < tmp_vec.size(); i++)
         {
             Proc proc = tmp_vec[i];
@@ -114,7 +114,7 @@ public:
         for (int i = 0; i < procs.size(); i++)
         {
             Proc proc = procs[i];
-            std::cout << "\nProcess: " << proc.proc_name << "\t response:" << proc.GetResponseTime() << "\t TA:" << proc.GetTimearound() << "\t delay" << proc.GetDelay();
+            std::cout << "\nProcess: " << proc.proc_name << "\t Response: " << proc.GetResponseTime() << "\t TA: " << proc.GetTimearound() << "\t Delay: " << proc.GetDelay();
         }
     }
 };
