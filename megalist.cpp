@@ -1,179 +1,155 @@
-#include "proc.cpp"
+#include "Headers/megalist.h"
 
-struct MegaNode
+MegaNode::MegaNode(Proc proc, int remaining, int origin_index) : proc(proc)
 {
-    Proc proc;
-    MegaNode *next;
-    MegaNode *prev;
+    this->remaining = remaining;
+    this->origin_index = origin_index;
 
-    int remaining;
-    int origin_index; // The index for the process in the procs vector, this is bad practice ikr.
+    next = NULL;
+    prev = NULL;
+}
 
-    MegaNode(Proc proc, int remaining, int origin_index) : proc(proc)
-    {
-        this->remaining = remaining;
-        this->origin_index = origin_index;
-
-        next = NULL;
-        prev = NULL;
-    }
-};
-
-class MegaList
+MegaList::~MegaList()
 {
-    MegaNode *current = NULL;
-    MegaNode *front = NULL;
-    MegaNode *back = NULL;
+    MegaNode *cur = back, *prev;
 
-    int size = 0;
-
-public:
-    ~MegaList()
+    while (cur != NULL)
     {
-        MegaNode *cur = back, *prev;
+        prev = cur;
+        cur = cur->next;
 
-        while (cur != NULL)
-        {
-            prev = cur;
-            cur = cur->next;
+        delete prev;
+    }
+}
 
-            delete prev;
-        }
+MegaNode *MegaList::GetCurrent()
+{
+    return current;
+}
+
+int MegaList::Size()
+{
+    return size;
+}
+
+void MegaList::Insert(MegaNode *node)
+{
+    ++size;
+
+    if (current == NULL)
+    {
+        current = front = back = node;
+
+        return;
     }
 
-    MegaNode *GetCurrent()
+    node->next = current;
+    node->prev = current->prev;
+    current->prev = node;
+
+    if (node->prev != NULL)
     {
-        return current;
+        node->prev->next = node;
     }
 
-    int Size()
+    if (back->prev != NULL)
     {
-        return size;
+        back = back->prev;
+    }
+}
+
+void MegaList::InsertSorted(MegaNode *node)
+{
+    ++size;
+
+    if (current == NULL)
+    {
+        current = front = back = node;
+
+        return;
     }
 
-    // Insert a MegaNode to the left of the current MegaNode
-    void Insert(MegaNode *node)
+    MegaNode *cur = back;
+
+    while (cur != NULL)
     {
-        ++size;
-
-        if (current == NULL)
+        if (node->remaining >= cur->remaining)
         {
-            current = front = back = node;
+            node->next = cur;
+            node->prev = cur->prev;
+            cur->prev = node;
 
-            return;
-        }
-
-        node->next = current;
-        node->prev = current->prev;
-        current->prev = node;
-
-        if (node->prev != NULL)
-        {
-            node->prev->next = node;
-        }
-
-        if (back->prev != NULL)
-        {
-            back = back->prev;
-        }
-    }
-
-    // Inserts a MegaNode into a sorted MegaList based on the remaining time
-    void InsertSorted(MegaNode *node)
-    {
-        ++size;
-
-        if (current == NULL)
-        {
-            current = front = back = node;
-
-            return;
-        }
-
-        MegaNode *cur = back;
-
-        while (cur != NULL)
-        {
-            if (node->remaining >= cur->remaining)
+            if (node->prev != NULL)
             {
-                node->next = cur;
-                node->prev = cur->prev;
-                cur->prev = node;
-
-                if (node->prev != NULL)
-                {
-                    node->prev->next = node;
-                }
-
-                break;
+                node->prev->next = node;
             }
 
-            cur = cur->next;
+            break;
         }
 
-        if (cur == NULL)
-        {
-            node->prev = front;
-            front->next = node;
-
-            front = front->next;
-            current = front;
-        }
-
-        if (back->prev != NULL)
-        {
-            back = back->prev;
-        }
+        cur = cur->next;
     }
 
-    // Inserts a MegaNode to the back of the MegaList
-    void InsertBack(MegaNode *node)
+    if (cur == NULL)
     {
-        ++size;
+        node->prev = front;
+        front->next = node;
 
-        if (current == NULL)
-        {
-            current = front = back = node;
-
-            return;
-        }
-
-        node->next = back;
-        back->prev = node;
-
-        back = node;
+        front = front->next;
+        current = front;
     }
 
-    // Removes the current MegaNode and assigns a new one based on the value of the argument, defaults to the next one
-    void Remove(bool forward = true)
+    if (back->prev != NULL)
     {
-        --size;
-
-        if (current->next != NULL)
-        {
-            current->next->prev = current->prev;
-        }
-        else
-        {
-            front = current->prev;
-        }
-
-        if (current->prev != NULL)
-        {
-            current->prev->next = current->next;
-        }
-        else
-        {
-            back = current->next;
-        }
-
-        if (forward)
-        {
-            current = current->next;
-        }
-        else
-        {
-            current = current->prev;
-        }
+        back = back->prev;
     }
-};
+}
+
+void MegaList::InsertBack(MegaNode *node)
+{
+    ++size;
+
+    if (current == NULL)
+    {
+        current = front = back = node;
+
+        return;
+    }
+
+    node->next = back;
+    back->prev = node;
+
+    back = node;
+}
+
+void MegaList::Remove(bool forward = true)
+{
+    --size;
+
+    if (current->next != NULL)
+    {
+        current->next->prev = current->prev;
+    }
+    else
+    {
+        front = current->prev;
+    }
+
+    if (current->prev != NULL)
+    {
+        current->prev->next = current->next;
+    }
+    else
+    {
+        back = current->next;
+    }
+
+    if (forward)
+    {
+        current = current->next;
+    }
+    else
+    {
+        current = current->prev;
+    }
+}
