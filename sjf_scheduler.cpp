@@ -21,6 +21,7 @@ class SJFScheduler : public Scheduler
                 current = mega_list.GetCurrent();
                 mega_list.Remove(false);
                 procs[current->origin_index].start_time = time;
+                fragments.push_back(current->proc.proc_name);
             }
         }
 
