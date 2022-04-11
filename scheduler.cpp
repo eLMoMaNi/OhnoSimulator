@@ -51,7 +51,8 @@ void Scheduler::Simulate()
 
         if (dispatched == IDLE_PROC && arrive_idx > procs.size() - 1)
         {
-            std::cout << "\nFinished all processes!\n" << std::endl;
+            std::cout << "\nFinished all processes!\n"
+                      << std::endl;
             break;
         }
         
