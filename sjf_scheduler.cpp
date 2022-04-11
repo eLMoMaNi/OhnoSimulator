@@ -1,4 +1,4 @@
-#include "scheduler.cpp"
+#include "Headers/scheduler.h"
 #include <algorithm>
 class SJFScheduler : public Scheduler
 {
