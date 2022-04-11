@@ -1,13 +1,13 @@
 #include "Headers/scheduler.h"
 
-class FIFOScheduler : public Scheduler
+class SRTScheduler : public Scheduler
 {
     MegaNode *current = NULL;
     Proc Dispatch(std::vector<MegaNode *> newcomers, int time)
     {
         for (int i = 0; i < newcomers.size(); ++i)
         {
-            mega_list.InsertBack(newcomers[i]);
+            mega_list.InsertSorted(newcomers[i]);
         }
 
         if (current == NULL)
@@ -23,6 +23,17 @@ class FIFOScheduler : public Scheduler
 
                 fragments.push_back(current->proc.proc_name);
             }
+        }
+
+        if (current != mega_list.GetCurrent())
+        {
+            current = mega_list.GetCurrent();
+            if (procs[current->origin_index].start_time == -1)
+            {
+                procs[current->origin_index].start_time = time;
+            }
+
+            fragments.push_back(current->proc.proc_name);
         }
 
         if (current->remaining > 0)
@@ -44,7 +55,10 @@ class FIFOScheduler : public Scheduler
         }
 
         current = mega_list.GetCurrent();
-        procs[current->origin_index].start_time = time;
+        if (procs[current->origin_index].start_time == -1)
+        {
+            procs[current->origin_index].start_time = time;
+        }
 
         fragments.push_back(current->proc.proc_name);
 

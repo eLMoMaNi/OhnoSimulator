@@ -27,14 +27,45 @@ void Scheduler::ParallelLoad(std::string filename)
 
         procs.push_back(proc);
     }
-    
+
     std::sort(procs.begin(), procs.end(), CompByArrive);
 }
 
-void Scheduler::Simulate()
+void Scheduler::InteractiveLoad()
+{
+    bool done = false;
+    int time = 0;
+    while (!done)
+    {
+        // getting processes and simulating them
+        while (true)
+        {
+            // getting new commers
+            std::cout << "At Time: " << time << " Enter comming process(name processingtime. eg Chrome 10 ) or type EXIT:\n";
+            std::string proc_name;
+            int processing_time;
+            std::cin >> proc_name;
+            if (proc_name == "NEXT")
+                break;
+
+            if (proc_name == "EXIT")
+            {
+                done = true;
+                break;
+            }
+            std::cin >> processing_time;
+            Proc proc(proc_name, processing_time, time);
+            procs.push_back(proc);
+        }
+        Simulate(true, time);
+        ++time;
+    }
+}
+
+void Scheduler::Simulate(bool interactive, int time)
 {
     int arrive_idx = 0;
-    int time = 0;
+    //int time = 0;
 
     while (true)
     {
@@ -51,27 +82,36 @@ void Scheduler::Simulate()
 
         if (dispatched == IDLE_PROC && arrive_idx > procs.size() - 1)
         {
-            std::cout << "\nFinished all processes!\n" << std::endl;
+            std::cout << "\nFinished all processes!\n"
+                      << std::endl;
             break;
         }
+
         std::cout << "At time: " << time << "\t process " << dispatched.proc_name << " is working\n";
 
         ++time;
+
+        if (interactive)
+        {
+            break;
+        }
     }
 }
 
 void Scheduler::PrintStatistics()
 {
-    std::vector<Proc> tmp_vec = procs;
-    std::sort(tmp_vec.begin(), tmp_vec.end(), CompByFinish);
+    // std::vector<Proc> tmp_vec = procs;
+    // std::sort(tmp_vec.begin(), tmp_vec.end(), CompByFinish);
 
     std::cout << "Processes Order: ";
-    for (int i = 0; i < tmp_vec.size(); i++)
+    for (int i = 0; i < fragments.size(); ++i)
     {
-        Proc proc = tmp_vec[i];
-        std::cout << proc.proc_name;
+        // Proc proc = tmp_vec[i];
+        // std::cout << proc.proc_name;
+
+        std::cout << fragments[i] << ' ';
     }
-    
+
     for (int i = 0; i < procs.size(); i++)
     {
         Proc proc = procs[i];

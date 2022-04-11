@@ -32,6 +32,12 @@ public:
     // Returns the MegaList's current size
     int Size();
 
+    // Sets current to the next MegaNode, sets it to back if current MegaNode is front
+    void Next();
+
+    // Sets current to the previous MegaNode, sets it to front if current MegaNode is back
+    void Prev();
+
     // Insert a MegaNode to the left of the current MegaNode
     void Insert(MegaNode *node);
 
