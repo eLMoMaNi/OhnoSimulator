@@ -25,7 +25,8 @@ public:
     static bool CompByArrive(const Proc &l, const Proc &r);
 
     void ParallelLoad(std::string filename);
-    void Simulate();
+    void Simulate(bool interactive = false,int time=0);
+    void InteractiveLoad();
     void PrintStatistics();
     void ExitProcess();
 };
