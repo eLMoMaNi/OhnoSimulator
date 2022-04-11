@@ -1,3 +1,6 @@
+#ifndef MEGALIST_H
+#define MEGALIST_H
+
 #include "proc.h"
 
 struct MegaNode
@@ -41,3 +44,5 @@ public:
     // Removes the current MegaNode and assigns a new one based on the value of the argument, defaults to the next one
     void Remove(bool forward);
 };
+
+#endif

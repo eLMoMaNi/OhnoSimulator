@@ -1,3 +1,6 @@
+#ifndef PROC_H
+#define PROC_H
+
 #include <string>
 
 struct Proc
@@ -25,3 +28,5 @@ struct Proc
 };
 
 const Proc IDLE_PROC = Proc("IDLE", -1, -1);
+
+#endif

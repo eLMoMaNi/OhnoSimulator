@@ -1,8 +1,12 @@
+#ifndef SCHEDULER_H
+#define SCHEDULER_H
+
 #include <vector>
 #include <string>
 #include <utility>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 #include "megalist.h"
 
 // Abstract class for variant Scheduler classes
@@ -23,3 +27,5 @@ public:
     void PrintStatistics();
     void ExitProcess();
 };
+
+#endif
