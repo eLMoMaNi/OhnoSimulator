@@ -39,5 +39,5 @@ public:
     void InsertBack(MegaNode *node);
 
     // Removes the current MegaNode and assigns a new one based on the value of the argument, defaults to the next one
-    void Remove(bool forward = true);
+    void Remove(bool forward);
 };

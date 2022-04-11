@@ -122,7 +122,7 @@ void MegaList::InsertBack(MegaNode *node)
     back = node;
 }
 
-void MegaList::Remove(bool forward = true)
+void MegaList::Remove(bool forward)
 {
     --size;
 
