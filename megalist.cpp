@@ -32,6 +32,24 @@ int MegaList::Size()
     return size;
 }
 
+void MegaList::Next()
+{
+    current = current->next;
+    if (current == NULL)
+    {
+        current = back;
+    }
+}
+
+void MegaList::Prev()
+{
+    current = current->prev;
+    if (current == NULL)
+    {
+        current = front;
+    }
+}
+
 void MegaList::Insert(MegaNode *node)
 {
     ++size;
@@ -144,12 +162,5 @@ void MegaList::Remove(bool forward)
         back = current->next;
     }
 
-    if (forward)
-    {
-        current = current->next;
-    }
-    else
-    {
-        current = current->prev;
-    }
+    forward ? Next() : Prev();
 }
