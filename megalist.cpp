@@ -78,7 +78,7 @@ public:
         }
     }
 
-    // Inserts a MegaNode into a sorted list based on the remaining time
+    // Inserts a MegaNode into a sorted MegaList based on the remaining time
     void InsertSorted(MegaNode *node)
     {
         ++size;
@@ -126,6 +126,24 @@ public:
         }
     }
 
+    // Inserts a MegaNode to the back of the MegaList
+    void InsertBack(MegaNode *node)
+    {
+        ++size;
+
+        if (current == NULL)
+        {
+            current = front = back = node;
+
+            return;
+        }
+
+        node->next = back;
+        back->prev = node;
+
+        back = node;
+    }
+
     // Removes the current MegaNode and assigns a new one based on the value of the argument, defaults to the next one
     void Remove(bool forward = true)
     {
@@ -148,8 +166,6 @@ public:
         {
             back = current->next;
         }
-
-        MegaNode *cur = current;
 
         if (forward)
         {
