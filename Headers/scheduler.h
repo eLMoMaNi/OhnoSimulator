@@ -14,6 +14,12 @@ protected:
 
 public:
     virtual Proc Dispatch(std::vector<MegaNode *> newcomers, int time) = 0;
-    virtual void ParallelLoad(std::string filename) = 0;
+    
+    static bool CompByFinish(const Proc &l, const Proc &r);
+    static bool CompByArrive(const Proc &l, const Proc &r);
+
+    void ParallelLoad(std::string filename);
+    void Simulate();
+    void PrintStatistics();
     void ExitProcess();
 };
