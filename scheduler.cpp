@@ -54,6 +54,7 @@ void Scheduler::Simulate()
             std::cout << "\nFinished all processes!\n" << std::endl;
             break;
         }
+        
         std::cout << "At time: " << time << "\t process " << dispatched.proc_name << " is working\n";
 
         ++time;
@@ -62,16 +63,18 @@ void Scheduler::Simulate()
 
 void Scheduler::PrintStatistics()
 {
-    std::vector<Proc> tmp_vec = procs;
-    std::sort(tmp_vec.begin(), tmp_vec.end(), CompByFinish);
+    //std::vector<Proc> tmp_vec = procs;
+    //std::sort(tmp_vec.begin(), tmp_vec.end(), CompByFinish);
 
     std::cout << "Processes Order: ";
-    for (int i = 0; i < tmp_vec.size(); i++)
+    for (int i = 0; i < fragments.size(); ++i)
     {
-        Proc proc = tmp_vec[i];
-        std::cout << proc.proc_name;
+        //Proc proc = tmp_vec[i];
+        //std::cout << proc.proc_name;
+
+        std::cout << fragments[i] << ' ';
     }
-    
+
     for (int i = 0; i < procs.size(); i++)
     {
         Proc proc = procs[i];

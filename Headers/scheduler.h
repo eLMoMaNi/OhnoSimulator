@@ -14,6 +14,8 @@ class Scheduler
 {
 protected:
     std::vector<Proc> procs;
+    std::vector<std::string> fragments;
+
     MegaList mega_list; 
 
 public:
