@@ -3,16 +3,14 @@
 #include <utility>
 #include <fstream>
 #include <iostream>
-#include "megalist.cpp"
+#include "megalist.h"
 
 // Abstract class for variant Scheduler classes
-//
-//
 class Scheduler
 {
 protected:
     std::vector<Proc> procs;
-    MegaList mega_list; //
+    MegaList mega_list; 
 
 public:
     virtual Proc Dispatch(std::vector<MegaNode *> newcomers, int time) = 0;
