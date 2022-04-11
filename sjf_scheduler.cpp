@@ -32,19 +32,22 @@ class SJFScheduler : public Scheduler
         }
 
         procs[current->origin_index].finish_time = time;
+        delete current;
+
         if (mega_list.Size() == 0)
         {
-            delete current;
             current = NULL;
             return IDLE_PROC;
         }
-        // update process
-        //
-        delete current;
+
         current = mega_list.GetCurrent();
         mega_list.Remove(false);
         procs[current->origin_index].start_time = time;
+
+        fragments.push_back(current->proc.proc_name);
+
         --(current->remaining);
+
         return current->proc;
     }
 };

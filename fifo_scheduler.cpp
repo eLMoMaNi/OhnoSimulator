@@ -20,6 +20,8 @@ class FIFOScheduler : public Scheduler
             {
                 current = mega_list.GetCurrent();
                 procs[current->origin_index].start_time = time;
+
+                fragments.push_back(current->proc.proc_name);
             }
         }
 
@@ -43,8 +45,11 @@ class FIFOScheduler : public Scheduler
 
         current = mega_list.GetCurrent();
         procs[current->origin_index].start_time = time;
+
+        fragments.push_back(current->proc.proc_name);
+
         --(current->remaining);
-        
+
         return current->proc;
     }
 };
