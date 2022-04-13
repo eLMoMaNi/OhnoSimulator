@@ -17,7 +17,7 @@ void GenerateFile(int n, int max_processing=10, int max_arrive=10, std::string f
         int processing_time=1 + ( std::rand() % ( max_processing - 1 + 1 ) );
         int arrive_time=1 + ( std::rand() % ( max_arrive - 1 + 1 ) );
 
-        file<<std::endl<<(std::to_string(arrive_time)+" "+std::to_string(processing_time));
+        file<<std::endl<<name<<" "<<(std::to_string(arrive_time)+" "+std::to_string(processing_time));
 
         
         ++name;
