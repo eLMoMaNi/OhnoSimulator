@@ -43,5 +43,5 @@ GPT3
 
 ## Credits:
 - [Mamdouh](https://github.com/TyFrendo)
-- [eLMoMaNi (Owner)](https://github.com/TyFrendo)
+- [eLMoMaNi (Owner)](https://github.com/elmomani)
 - Dr. Mohammad Alshboul (Instructor)
