@@ -12,7 +12,13 @@ bool Scheduler::CompByFinish(const Proc &l, const Proc &r)
 
 void Scheduler::ParallelLoad(std::string filename)
 {
+
     std::ifstream file(filename);
+
+    if (!(file.good())){
+        std::cerr<<"File does NOT exist!";
+        return;
+    }
 
     int n;
     file >> n;
