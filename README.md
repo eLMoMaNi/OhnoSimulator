@@ -2,10 +2,10 @@
 ## _Oh-no Simulator, ain't no OS._
 
 
-Oh-no Simulator is a simulator that simulate an OS architcure. right now it only has scheduling algorithms simulation.
+Oh-no Simulator is a simulator that simulates an OS architcure. Right now it only has scheduling algorithms simulation.
 
 Ready to use Schedulers:
-- FIFI
+- FIFO
 - SJF
 - SRT
 - RR
@@ -13,7 +13,7 @@ Ready to use Schedulers:
 ## Features
 
 - Fully Object Oriented
-- Parallel load for fast testting
+- Parallel load for fast testing
 - Interactive mode for indepth detalis
 - super very cool and no cap
 
