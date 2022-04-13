@@ -20,6 +20,7 @@ protected:
 
 public:
     virtual Proc Dispatch(std::vector<MegaNode *> newcomers, int time) = 0;
+    //TODO create clear list function..
     
     static bool CompByFinish(const Proc &l, const Proc &r);
     static bool CompByArrive(const Proc &l, const Proc &r);
