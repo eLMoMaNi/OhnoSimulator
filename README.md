@@ -36,6 +36,6 @@ GPT3
 **Free Software!**
 
 ## Credits:
-- [Mamdouh](https://github.com/TyFrendo)
+- [diona](https://github.com/TyFrendo)
 - [eLMoMaNi (Owner)](https://github.com/elmomani)
 - Dr. Mohammad Alshboul (Instructor)
